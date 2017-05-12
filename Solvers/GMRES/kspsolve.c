@@ -166,9 +166,9 @@ So in order to use our FGMRES we make it explicitly like follows
   flag1 = PETSC_FALSE;
   flag2 = PETSC_FALSE;
   flag3 = PETSC_FALSE;
-  ierr  = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_compute_eigenvalues",&flag1,NULL);CHKERRQ(ierr);
-  ierr  = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_plot_eigenvalues",&flag2,NULL);CHKERRQ(ierr);
-  ierr  = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_plot_eigencontours",&flag3,NULL);CHKERRQ(ierr);
+  ierr  = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_compute_eigenvalues",&flag1,NULL);CHKERRQ(ierr);
+  ierr  = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_plot_eigenvalues",&flag2,NULL);CHKERRQ(ierr);
+  ierr  = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_plot_eigencontours",&flag3,NULL);CHKERRQ(ierr);
   if (flag1 || flag2 || flag3) {
     PetscInt  nits,n,i,neig;
     PetscReal *r,*c;
@@ -215,7 +215,7 @@ So in order to use our FGMRES we make it explicitly like follows
   }
 
   flag1 = PETSC_FALSE;
-  ierr  = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_compute_singularvalues",&flag1,NULL);CHKERRQ(ierr);
+  ierr  = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_compute_singularvalues",&flag1,NULL);CHKERRQ(ierr);
   if (flag1) {
     PetscInt nits;
 
@@ -233,8 +233,8 @@ So in order to use our FGMRES we make it explicitly like follows
 
   flag1 = PETSC_FALSE;
   flag2 = PETSC_FALSE;
-  ierr  = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_compute_eigenvalues_explicitly",&flag1,NULL);CHKERRQ(ierr);
-  ierr  = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_plot_eigenvalues_explicitly",&flag2,NULL);CHKERRQ(ierr);
+  ierr  = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_compute_eigenvalues_explicitly",&flag1,NULL);CHKERRQ(ierr);
+  ierr  = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_plot_eigenvalues_explicitly",&flag2,NULL);CHKERRQ(ierr);
   if (flag1 || flag2) {
     PetscInt  n,i;
     PetscReal *r,*c;
@@ -270,7 +270,7 @@ So in order to use our FGMRES we make it explicitly like follows
     ierr = PetscFree2(r,c);CHKERRQ(ierr);
   }
 
-  ierr = PetscOptionsHasName(((PetscObject)ksp)->prefix,"-ksp_view_mat_explicit",&flag2);CHKERRQ(ierr);
+  ierr = PetscOptionsHasName(NULL,((PetscObject)ksp)->prefix,"-ksp_view_mat_explicit",&flag2);CHKERRQ(ierr);
   if (flag2) {
     Mat A,B;
     ierr = PCGetOperators(ksp->pc,&A,NULL);CHKERRQ(ierr);
@@ -278,7 +278,7 @@ So in order to use our FGMRES we make it explicitly like follows
     ierr = MatViewFromOptions(B,(PetscObject)ksp,"-ksp_view_mat_explicit");CHKERRQ(ierr);
     ierr = MatDestroy(&B);CHKERRQ(ierr);
   }
-  ierr = PetscOptionsHasName(((PetscObject)ksp)->prefix,"-ksp_view_preconditioned_operator_explicit",&flag2);CHKERRQ(ierr);
+  ierr = PetscOptionsHasName(NULL,((PetscObject)ksp)->prefix,"-ksp_view_preconditioned_operator_explicit",&flag2);CHKERRQ(ierr);
   if (flag2) {
     Mat B;
     ierr = KSPComputeExplicitOperator(ksp,&B);CHKERRQ(ierr);
@@ -288,7 +288,7 @@ So in order to use our FGMRES we make it explicitly like follows
   ierr = KSPViewFromOptions(ksp,NULL,"-ksp_view");CHKERRQ(ierr);
 
   flg  = PETSC_FALSE;
-  ierr = PetscOptionsGetBool(((PetscObject)ksp)->prefix,"-ksp_final_residual",&flg,NULL);CHKERRQ(ierr);
+  ierr = PetscOptionsGetBool(NULL,((PetscObject)ksp)->prefix,"-ksp_final_residual",&flg,NULL);CHKERRQ(ierr);
   if (flg) {
     Mat       A;
     Vec       t;

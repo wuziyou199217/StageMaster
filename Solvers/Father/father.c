@@ -37,8 +37,8 @@ PetscErrorCode Father(com_lsa * com, Vec * v){
 	char  ls_load_path[PETSC_MAX_PATH_LEN];
 	PetscBool ls_load, ls_load_any;
 
-	ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_ls_load",ls_load_path,PETSC_MAX_PATH_LEN,&ls_load);CHKERRQ(ierr);
-	ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_ls_load_any",&ls_load_any);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_ls_load",ls_load_path,PETSC_MAX_PATH_LEN,&ls_load);CHKERRQ(ierr);
+	ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_ls_load_any",&ls_load_any);CHKERRQ(ierr);
 
 	if(ls_load&&ls_load_any){
 	  ls_load_any=PETSC_FALSE;

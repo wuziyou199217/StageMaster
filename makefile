@@ -37,10 +37,10 @@ MDIR=./data
 
 #debug options
 
-#DEBUG_VALGRIND = valgrind --tool=memcheck -q
+DEBUG_VALGRIND = valgrind --tool=memcheck -q --vgdb=yes
 #DEBUG_KSP_VIEW = -ksp_view
 
-RESTART_MAX = 20
+RESTART_MAX = 400
 GMRES_PRECISION= 1e-10
 GMRES_RESTART= ${RESTART_MAX}
 GMRES_NB_NODES=1
@@ -61,7 +61,7 @@ ARNOLDI_FLAGS= -eps_ncv 20 -eps_type arnoldi -eps_true_residual -eps_largest_ima
 LS_POWER = 10
 LS_POLY_APPL = 5
 LS_LATENCY=1
-LS_PC_USE =0
+LS_PC_USE =1
 LS_NO_USE_LS= -ksp_ls_nols
 LS_HANG_IT= 20000
 LS_HANG_TIME=  100000
@@ -116,11 +116,7 @@ rmat :
 exec: main.o
 	-@echo "BEGINNING TO COMPILE APPLICATION "
 	-@echo "========================================="
-	@${CLINKER} -I${SLEPC_DIR}/include ${OFILES} ${HFILES} -L${SLEPC_LIB} -L. -L${SLEPC_DIR}/${PETSC_ARCH}/lib -g -v -o ${EXEC} main.o
-	#@${CLINKER} -I${SLEPC_DIR}/include ${OFILES} ${HFILES} -L${SLEPC_LIB} -L. -L${SLEPC_DIR}/${PETSC_ARCH}/lib -g -v  -o convert convertor.o
-	#@${CLINKER} -L{PETSC_DIR}/${PETSC_ARCH}/lib -g -v -o ${EXEC} main.o ${OFILES} ${HFILES} -I${PETSC_DIR}/include -lm
-	#${CLINKER}  -L${PETSC_DIR}/${PETSC_ARCH}/lib/petsc/conf/ -L. ${OFILES}  -o ${EXEC} main.o ${HFILES} -I${PETSC_DIR}/include/petsc/private/ -I${PETSC_DIR}/${PETSC_ARCH}/include -I${PETSC_DIR}/include
-
+	-@${CLINKER} -I${SLEPC_DIR}/include ${OFILES} ${HFILES} -L${SLEPC_LIB} -L. -L${SLEPC_DIR}/${PETSC_ARCH}/lib -g -v -o ${EXEC} main.o ${SLEPC_EPS_LIB}
 	-@echo "Completed building application"
 	-@echo "========================================="
 

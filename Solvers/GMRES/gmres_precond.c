@@ -42,8 +42,8 @@ PetscErrorCode GmresLSAPrecond(com_lsa * com, KSP ksp)
   char  ls_load_path[PETSC_MAX_PATH_LEN];
   PetscBool ls_load, ls_load_any;
 
-  ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_ls_load",ls_load_path,PETSC_MAX_PATH_LEN,&ls_load);CHKERRQ(ierr);
-  ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_ls_load_any",&ls_load_any);CHKERRQ(ierr);
+  ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_ls_load",ls_load_path,PETSC_MAX_PATH_LEN,&ls_load);CHKERRQ(ierr);
+  ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_ls_load_any",&ls_load_any);CHKERRQ(ierr);
 
   if(ls_load&&ls_load_any){
 	  ls_load_any=PETSC_FALSE;
@@ -55,15 +55,15 @@ PetscErrorCode GmresLSAPrecond(com_lsa * com, KSP ksp)
 
   PetscFunctionBegin;
 
-  ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_power",&ls_power,&flag);CHKERRQ(ierr);
+  ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_power",&ls_power,&flag);CHKERRQ(ierr);
   if(!flag) ls_power=LS_POWER;
-  ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_latency",&latency,&flag);CHKERRQ(ierr);
+  ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_latency",&latency,&flag);CHKERRQ(ierr);
   if(!flag) latency=LS_LATENCY;
-  ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_m_hang",&hang,&flag);CHKERRQ(ierr);
+  ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_m_hang",&hang,&flag);CHKERRQ(ierr);
   if(!flag) hang=ksp->max_it;
-  ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_nopc",&nols,&flag);CHKERRQ(ierr);
+  ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_nopc",&nols,&flag);CHKERRQ(ierr);
   if(!flag) nols=1;
-  ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_timing",&timing,&flag);CHKERRQ(ierr);
+  ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_timing",&timing,&flag);CHKERRQ(ierr);
   if(!flag) timing=1000000;
 
   latency_count++;

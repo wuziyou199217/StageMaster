@@ -19,7 +19,7 @@
  
  */
 
-#include "Libs/mpi_lsa_com.h"
+#include "./Libs/mpi_lsa_com.h"
 #include "slepceps.h"
 #include <unistd.h>
 #include <sys/stat.h>

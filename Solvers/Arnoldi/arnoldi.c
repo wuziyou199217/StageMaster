@@ -45,8 +45,8 @@ PetscErrorCode Arnoldi(com_lsa * com, Mat * A, Vec  *v){
 	char  ls_load_path[PETSC_MAX_PATH_LEN];
 	PetscBool ls_load, ls_load_any;
 
-	ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_ls_load",ls_load_path,PETSC_MAX_PATH_LEN,&ls_load);CHKERRQ(ierr);
-	ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_ls_load_any",&ls_load_any);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_ls_load",ls_load_path,PETSC_MAX_PATH_LEN,&ls_load);CHKERRQ(ierr);
+	ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_ls_load_any",&ls_load_any);CHKERRQ(ierr);
 
 	if(ls_load&&ls_load_any){
 	  ls_load_any=PETSC_FALSE;
@@ -80,13 +80,13 @@ PetscErrorCode Arnoldi(com_lsa * com, Mat * A, Vec  *v){
 	ierr=VecSetRandom(initialv,PETSC_NULL);//initialize initial vector to random
 	ierr=VecGetSize(initialv,&size);CHKERRQ(ierr);
 
-	ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_eigen",&eigen_nb,&flag);CHKERRQ(ierr);
+	ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_eigen",&eigen_nb,&flag);CHKERRQ(ierr);
 	if(!flag) eigen_nb=EIGEN_ALL;
-	ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_arnoldi_load",load_path,PETSC_MAX_PATH_LEN,&data_load);CHKERRQ(ierr);
-	ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_arnoldi_export",export_path,PETSC_MAX_PATH_LEN,&data_export);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_arnoldi_load",load_path,PETSC_MAX_PATH_LEN,&data_load);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_arnoldi_export",export_path,PETSC_MAX_PATH_LEN,&data_export);CHKERRQ(ierr);
 
-	ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_arnoldi_load_any",&load_any);CHKERRQ(ierr);
-	ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_arnoldi_cexport",&continuous_export);CHKERRQ(ierr);
+	ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_arnoldi_load_any",&load_any);CHKERRQ(ierr);
+	ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_arnoldi_cexport",&continuous_export);CHKERRQ(ierr);
 
 	vs=malloc(size*sizeof(Vec));
 	for(i=0;i<size;i++){

@@ -1,0 +1,9 @@
+1. main.c PetscOptionsGetInt()
+2. ./Libs read_matrix.c PetsOptionsGetString()
+3. ./Solvers/Arnoldi/arnoldi.c PetsOptionsGetString(); PetsOptionsHasName(); PetscOptionsGetInt()
+4. ./Solvers/Father/father.c PetsOptionsGetString(); PetsOptionsHasName()
+5. ./Solvers/GMRES/gmres.c PetscOptionsGetInt()
+6. ./Solvers/GMRES/gmres_precond.c PetsOptionsGetString(); PetsOptionsHasName(); PetscOptionsGetInt()
+7. ./Solvers/GMRES/kspsolve.c PetsOptionsHasName(); PetsOptionsGetBool()
+8. ./Solvers/LS/lsqr.c PetscOptionsGetInt(); PetsOptionsGetString(); PetsOptionsHasName()
+

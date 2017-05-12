@@ -31,7 +31,7 @@ PetscErrorCode read_matrix_vector(Mat * A, Vec * v, int * communicator){
 	PetscInt size,sizea;
 	PetscScalar scal;
 
-	ierr=PetscOptionsGetString(PETSC_NULL,"-mfile",filea,PETSC_MAX_PATH_LEN-1,&flaga);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-mfile",filea,PETSC_MAX_PATH_LEN-1,&flaga);CHKERRQ(ierr);
 	if (!flaga) {
 		sprintf(err,"Error : mfile is not properly set -> %s\n",filea);
 		SETERRQ(*communicator,(PetscErrorCode) 83,err);
@@ -46,7 +46,7 @@ PetscErrorCode read_matrix_vector(Mat * A, Vec * v, int * communicator){
 	ierr=MatGetSize(*A,&size,&sizea);CHKERRQ(ierr);
 	PetscPrintf(PETSC_COMM_WORLD,"Loaded Matrix of size : %d %d\n",size,sizea);
 
-	ierr=PetscOptionsGetString(PETSC_NULL,"-vfile",fileb,PETSC_MAX_PATH_LEN-1,&flagb);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-vfile",fileb,PETSC_MAX_PATH_LEN-1,&flagb);CHKERRQ(ierr);
 
 	if (!flagb) {
 		/* the user did not provide a vector, so generate it*/

@@ -40,18 +40,18 @@ PetscErrorCode LSQR(com_lsa * com, int * vector_size){
 	sprintf(load_path,"./lsqr.bin");
 	sprintf(export_path,"./lsqr.bin");
 	/* check if there is arguments for ls */
-	ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_eigen_min",&ls_eigen_min,&flag);CHKERRQ(ierr);
+	ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_eigen_min",&ls_eigen_min,&flag);CHKERRQ(ierr);
 	if(!flag) ls_eigen_min=EIGEN_MIN;
-	ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_eigen",&ls_eigen,&flag);CHKERRQ(ierr);
+	ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_eigen",&ls_eigen,&flag);CHKERRQ(ierr);
 	if(!flag) ls_eigen=EIGEN_ALL;
 	/* check the number of eigenvalues that one will receive from arnoldi */
-  ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_k_param",&eigen_max,&flag);CHKERRQ(ierr);
+  ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_k_param",&eigen_max,&flag);CHKERRQ(ierr);
 	if(!flag)eigen_max=ls_eigen;
 
-	ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_ls_load",load_path,PETSC_MAX_PATH_LEN,&data_load);CHKERRQ(ierr);
-	ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_ls_load_any",&data_load_any);CHKERRQ(ierr);
-	ierr=PetscOptionsGetString(PETSC_NULL,"-ksp_ls_export",export_path,PETSC_MAX_PATH_LEN,&data_export);CHKERRQ(ierr);
-	ierr=PetscOptionsHasName(PETSC_NULL,"-ksp_ls_cexport",&continuous_export);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_ls_load",load_path,PETSC_MAX_PATH_LEN,&data_load);CHKERRQ(ierr);
+	ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_ls_load_any",&data_load_any);CHKERRQ(ierr);
+	ierr=PetscOptionsGetString(NULL,PETSC_NULL,"-ksp_ls_export",export_path,PETSC_MAX_PATH_LEN,&data_export);CHKERRQ(ierr);
+	ierr=PetscOptionsHasName(NULL,PETSC_NULL,"-ksp_ls_cexport",&continuous_export);CHKERRQ(ierr);
 
 	ierr=PetscMalloc((*vector_size)*sizeof(PetscScalar),&eigen_tri);
 	ierr=PetscMalloc((*vector_size)*sizeof(PetscScalar),&eigen_cumul);

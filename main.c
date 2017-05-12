@@ -78,7 +78,7 @@ int main(int argc, char ** argv){
 	mpi_lsa_com_vecsize_init(&com,&v);
 
 	MPI_Barrier(MPI_COMM_WORLD);
-	ierr=PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_nopc",&nols,&flag);CHKERRQ(ierr);
+	ierr=PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_nopc",&nols,&flag);CHKERRQ(ierr);
 	if(!flag) nols=1;
 	else if(nols==0) PetscPrintf(com.com_world,"]> not using LSA preconditionning %d\n",nols);
 

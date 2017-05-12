@@ -41,7 +41,7 @@ PetscErrorCode launchGMRES(com_lsa * com, Vec * b, Mat * A){
 	ierr = VecDuplicate(*b, &x);CHKERRQ(ierr);
 	ierr = PetscObjectSetName((PetscObject) x, "Solution");CHKERRQ(ierr);
 	ierr = VecSet(x, 0.0); CHKERRQ(ierr);
-	ierr = PetscOptionsGetInt(PETSC_NULL,"-ksp_ls_nopc",&nols,&flagls);CHKERRQ(ierr);
+	ierr = PetscOptionsGetInt(NULL,PETSC_NULL,"-ksp_ls_nopc",&nols,&flagls);CHKERRQ(ierr);
 	ierr = KSPCreate(com->com_group, &ksp);CHKERRQ(ierr);
 	ierr = KSPSetType(ksp,KSPFGMRES);CHKERRQ(ierr);
 //	KSPSetInitialGuessNonzero(ksp, PETSC_TRUE);
@@ -51,7 +51,7 @@ PetscErrorCode launchGMRES(com_lsa * com, Vec * b, Mat * A){
 
 //	PetscPrintf(com->com_group,"#} GMRES Creating and setting vector x\n");
 
-	PetscOptionsGetInt(NULL,"-ntimes",&ntimes,&flagtimes);
+	PetscOptionsGetInt(NULL,NULL,"-ntimes",&ntimes,&flagtimes);
 
 	if(!flagtimes){
 		ntimes=1;
